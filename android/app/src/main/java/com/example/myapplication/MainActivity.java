@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
+        // mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mRecyclerView = (RecyclerView) findViewById(R.id.listView_main_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
+        // mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
 
 
 
@@ -96,12 +96,12 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(result);
 
             progressDialog.dismiss();
-            mTextViewResult.setText(result);
+            // mTextViewResult.setText(result);
             Log.d(TAG, "response - " + result);
 
             if (result == null){
 
-                mTextViewResult.setText(errorString);
+                // mTextViewResult.setText(errorString);
             }
             else {
 
@@ -182,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
         String TAG_BARCODE="BARCODE";
         String TAG_CVS_NAME = "CVS_NAME";
         String TAG_PRODUCT_NAME = "PRODUCT_NAME";
+        String TAG_PRODUCT_IMAGE = "PRODUCT_IMAGE";
 
 
 
@@ -196,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                 String BARCODE = item.getString(TAG_BARCODE);
                 String CVS_NAME = item.getString(TAG_CVS_NAME);
                 String PRODUCT_NAME = item.getString(TAG_PRODUCT_NAME);
+                String PRODUCT_IMAGE = item.getString(TAG_PRODUCT_IMAGE);
 
                 PersonalData personalData = new PersonalData();
 
@@ -203,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 personalData.setBARCODE(BARCODE);
                 personalData.setCVS_NAME(CVS_NAME);
                 personalData.setPRODUCT_NAME(PRODUCT_NAME);
+                personalData.setPRODUCT_IMAGE_URL(PRODUCT_IMAGE);
 
                 mArrayList.add(personalData);
                 mAdapter.notifyDataSetChanged();

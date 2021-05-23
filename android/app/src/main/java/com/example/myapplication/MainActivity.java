@@ -53,12 +53,28 @@ public class MainActivity extends AppCompatActivity {
 
         // mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
 
-
+        mEditTextSearchKeyword = (EditText) findViewById(R.id.editText_main_searchKeyword);
 
         mArrayList = new ArrayList<>();
 
         mAdapter = new UsersAdapter(this, mArrayList);
         mRecyclerView.setAdapter(mAdapter);
+
+        Button button_search = (Button) findViewById(R.id.button_main_search);
+        button_search.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                mArrayList.clear();
+                mAdapter.notifyDataSetChanged();
+
+
+                String Keyword =  mEditTextSearchKeyword.getText().toString();
+                mEditTextSearchKeyword.setText("");
+
+                GetData task = new GetData();
+                task.execute( "http://" + IP_ADDRESS + "/query.php", Keyword);
+            }
+        });
 
 
         Button button_all = (Button) findViewById(R.id.button_main_all);
@@ -115,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
 
             String serverURL = params[0];
-            String postParameters = params[1];
+            String postParameters = "BARCODE="+params[1];
 
 
             try {

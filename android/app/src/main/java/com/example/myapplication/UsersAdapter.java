@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -27,13 +30,15 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.CustomViewHo
         protected TextView CVS_NAME;
         protected TextView PRODUCT_NAME;
         protected TextView BARCODE;
+        protected ImageView PRODUCT_IMAGE;
 
 
         public CustomViewHolder(View view) {
             super(view);
-            this.BARCODE = (TextView) view.findViewById(R.id.textView_list_BARCODE);
+            // this.BARCODE = (TextView) view.findViewById(R.id.textView_list_BARCODE);
             this.CVS_NAME = (TextView) view.findViewById(R.id.textView_list_CVS_NAME);
             this.PRODUCT_NAME = (TextView) view.findViewById(R.id.textView_list_PRODUCT_NAME);
+            this.PRODUCT_IMAGE = (ImageView) view.findViewById(R.id.imageView_product_image);
         }
     }
 
@@ -48,9 +53,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.CustomViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder viewholder, int position) {
-        viewholder.BARCODE.setText(mList.get(position).getBARCODE());
+        // viewholder.BARCODE.setText(mList.get(position).getBARCODE());
         viewholder.CVS_NAME.setText(mList.get(position).getCVS_NAME());
         viewholder.PRODUCT_NAME.setText(mList.get(position).getPRODUCT_NAME());
+        Glide.with(context).load(mList.get(position).getPRODUCT_IMAGE_URL()).into(viewholder.PRODUCT_IMAGE);
     }
 
     @Override

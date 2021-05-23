@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
 
             String serverURL = params[0];
-            String postParameters = "BARCODE="+params[1];
+            String postParameters = "PRODUCT_NAME="+params[1];
 
 
             try {
